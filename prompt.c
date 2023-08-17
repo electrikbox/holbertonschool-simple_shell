@@ -9,17 +9,14 @@
 int main(int ac, char **av)
 {
 	int exe;
-	char *input;
-	size_t bufsize;
+	char *input = NULL;
+	size_t bufsize = 0;
 
 	(void)ac;
 
 	while (1)
 	{
 		fflush(stdout);
-
-		input = NULL;
-		bufsize = 0;
 
 		if (getline(&input, &bufsize, stdin) == -1)
 			break;
