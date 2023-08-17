@@ -8,6 +8,8 @@
 #include <sys/wait.h>
 #include <string.h>
 
+extern char **environ;
+
 int execute(char *input);
 char *getEnv(char *input);
 char **tokenize(char *input);
