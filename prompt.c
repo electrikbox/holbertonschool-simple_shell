@@ -16,17 +16,14 @@ int main(int ac, char **av)
 
 	while (1)
 	{
-		printf("(MyShell)$ ");
+		printf("$ ");
 		fflush(stdout);
 
 		input = NULL;
 		bufsize = 0;
 
 		if (getline(&input, &bufsize, stdin) == -1)
-		{
-			printf("Exiting...\n");
 			break;
-		}
 
 		if (*input == '\n')
 			continue;
