@@ -19,6 +19,8 @@ char **tokenize(char *input)
 	}
 
 	token = strtok(input, " \t\n");
+	if (!token)
+		exit(EXIT_FAILURE);
 
 	while (token != NULL)
 	{
