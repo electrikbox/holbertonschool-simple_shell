@@ -11,7 +11,7 @@ char **tokenize(char *input)
 	char **args = NULL;
 	int argCount = 0;
 
-	args = (char **)malloc(100 * sizeof(char *));
+	args = malloc(1024 * sizeof(char *));
 	if (args == NULL)
 	{
 		perror("Memory allocation failed");
