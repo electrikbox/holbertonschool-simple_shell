@@ -16,7 +16,6 @@ int main(int ac, char **av)
 
 	while (1)
 	{
-		printf("$ ");
 		fflush(stdout);
 
 		input = NULL;
