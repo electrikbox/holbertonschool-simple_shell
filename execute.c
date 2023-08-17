@@ -19,7 +19,7 @@ int execute(char *input)
 	else if (pid == 0)
 	{
 		args = tokenize(input);
-		exe = execve(args[0], args, NULL);
+		exe = execve(args[0], args, environ);
 		if (exe < 0)
 			return (-1);
 
