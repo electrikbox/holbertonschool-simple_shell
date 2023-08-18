@@ -13,6 +13,8 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
+		printf("$ ");
+
 		lengthLinePtr = getline(&linePtr, &number, stdin);
 
 		if (lengthLinePtr == -1)
