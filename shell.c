@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv)
 {
-	char *linePtr = NULL, *linePtrCopy = NULL, *token;
+	char *linePtr = NULL, *linePtrCopy = NULL, *token, *start;
 	size_t number = 0;
 	ssize_t lengthLinePtr;
 	const char *delim = " \n";
@@ -22,6 +22,13 @@ int main(int argc, char **argv)
 		}
 
 		if (*linePtr == '\n')
+			continue;
+
+		start = linePtr;
+		while (*start && isspace(*start))
+			start++;
+
+		if (*start == '\0')
 			continue;
 
 		linePtrCopy = malloc(sizeof(char) * lengthLinePtr + 1);
