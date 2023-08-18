@@ -9,7 +9,10 @@ int execute(char *input)
 {
 	int status, exe;
 	char **args;
-	pid_t pid = fork();
+	pid_t pid;
+
+	args = tokenize(input);
+	pid = fork();
 
 	if (pid < 0)
 	{
@@ -18,7 +21,6 @@ int execute(char *input)
 	}
 	else if (pid == 0)
 	{
-		args = tokenize(input);
 		exe = execve(args[0], args, environ);
 		if (exe < 0)
 			return (-1);
@@ -26,7 +28,10 @@ int execute(char *input)
 		exit(1);
 	}
 	else
+	{
 		wait(&status);
+		free(args);
+	}
 
 	return (1);
 }

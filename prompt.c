@@ -18,6 +18,9 @@ int main(int ac, char **av)
 	{
 		fflush(stdout);
 
+		if (isatty(0))
+            printf("shell$ ");
+
 		if (getline(&input, &bufsize, stdin) == -1)
 			break;
 
