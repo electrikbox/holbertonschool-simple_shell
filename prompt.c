@@ -1,36 +1,49 @@
 #include "main.h"
 
+char* trim_input(char* input)
+{
+    char* trimmed_input = input;
+
+    while (*trimmed_input == ' ' || *trimmed_input == '\t')
+        trimmed_input++;
+
+    if (*trimmed_input == '\n' || *trimmed_input == '\0')
+        return NULL;
+
+    return trimmed_input;
+}
+
 /**
  * main - Shell
  * @ac: Number of arguments
  * @av: Arguments
  * Return: 0
 */
-int main(int ac, char **av)
+int main(void)
 {
-	int exe;
-	char *input = NULL;
+	int exeCmd;
+	char *input = NULL, *trimmed_input = NULL;
 	size_t bufsize = 0;
-
-	(void)ac;
+	ssize_t read;
 
 	while (1)
 	{
-		fflush(stdout);
+		if (isatty(STDIN_FILENO))
+            printf("ⓢ ");
 
-		if (isatty(0))
-            printf("shell$ ");
+		read = getline(&input, &bufsize, stdin);
+        if (read == -1)
+            break;
 
-		if (getline(&input, &bufsize, stdin) == -1)
-			break;
+        trimmed_input = trim_input(input);
+        if (trimmed_input == NULL)
+            continue;
 
-		if (*input == '\n')
-			continue;
-
-		exe = execute(input);
-		if (exe == -1)
-			perror(av[0]);
+		exeCmd = execute(input);
+		if (exeCmd == -1)
+			perror("error");
 	}
+
 	free(input);
 	return (0);
 }
