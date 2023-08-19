@@ -17,13 +17,17 @@ int execute(char *input)
 	if (pid < 0)
 	{
 		perror("Fork failed");
+		free(args);
 		exit(1);
 	}
 	else if (pid == 0)
 	{
 		exe = execve(args[0], args, environ);
 		if (exe < 0)
+		{
+			free(args);
 			return (-1);
+		}
 
 		exit(1);
 	}
