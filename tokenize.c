@@ -11,7 +11,7 @@ char **tokenize(char *input)
 	char **args = NULL;
 	int argCount = 0;
 
-	args = malloc(1024 * sizeof(char *));
+	args = calloc(10, sizeof(char *));
 	if (args == NULL)
 	{
 		perror("Memory allocation failed");
@@ -19,6 +19,7 @@ char **tokenize(char *input)
 	}
 
 	token = strtok(input, " \t\n");
+
 	if (!token)
 		exit(EXIT_FAILURE);
 
