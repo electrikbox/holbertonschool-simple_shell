@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * execute - Executes a command
+ * execute - Executes a command.
  * @input: The command to execute
  * Return: 1 on success, -1 on failure
 */
