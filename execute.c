@@ -12,7 +12,8 @@ int execute(char *input)
 	pid_t pid;
 
 	trimmedInput = trimInput(input);
-	args = tokenize(input);
+
+	args = tokenize(trimmedInput);
 
 	if (trimmedInput[0] == '/')
 		path = strdup(trimmedInput);
@@ -20,10 +21,12 @@ int execute(char *input)
 		path = getPathEnv(args[0]);
 
 	if (args == NULL || path == NULL)
+	{
+		free(args);
 		return (-1);
+	}
 
 	pid = fork();
-
 	if (pid < 0)
 	{
 		free(args);
@@ -39,7 +42,6 @@ int execute(char *input)
 			free(path);
 			return (-1);
 		}
-
 		exit(1);
 	}
 	else
@@ -48,6 +50,5 @@ int execute(char *input)
 		free(args);
 		free(path);
 	}
-
 	return (1);
 }
