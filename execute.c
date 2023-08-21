@@ -8,24 +8,30 @@
 int execute(char *input)
 {
 	int status, exe;
-	char **args;
+	char **args, *path;
 	pid_t pid;
 
 	args = tokenize(input);
+	path = getPathEnv(args[0]);
+
+	if (args == NULL || path == NULL)
+		return (-1);
+
 	pid = fork();
 
 	if (pid < 0)
 	{
-		perror("Fork failed");
 		free(args);
-		exit(1);
+		free(path);
+		return(-1);
 	}
 	else if (pid == 0)
 	{
-		exe = execve(args[0], args, environ);
+		exe = execve(path, args, environ);
 		if (exe < 0)
 		{
 			free(args);
+			free(path);
 			return (-1);
 		}
 
@@ -35,6 +41,7 @@ int execute(char *input)
 	{
 		wait(&status);
 		free(args);
+		free(path);
 	}
 
 	return (1);
