@@ -8,17 +8,24 @@
 int execute(char *input)
 {
 	int status, exe;
-	char **args, *path;
+	char **args, *path, *trimmedInput;
 	pid_t pid;
 
-	args = tokenize(input);
-	path = getPathEnv(args[0]);
+	trimmedInput = trimInput(input);
+	args = tokenize(trimmedInput);
+
+	if (trimmedInput[0] == '/')
+		path = strdup(trimmedInput);
+	else
+		path = getPathEnv(args[0]);
 
 	if (args == NULL || path == NULL)
+	{
+		free(args);
 		return (-1);
+	}
 
 	pid = fork();
-
 	if (pid < 0)
 	{
 		free(args);
@@ -34,7 +41,6 @@ int execute(char *input)
 			free(path);
 			return (-1);
 		}
-
 		exit(1);
 	}
 	else
@@ -43,6 +49,5 @@ int execute(char *input)
 		free(args);
 		free(path);
 	}
-
 	return (1);
 }
