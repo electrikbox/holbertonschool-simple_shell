@@ -12,8 +12,8 @@
 extern char **environ;
 
 int execute(char *input);
-char *getEnv(char *input);
+char *getPathEnv(char *input);
 char **tokenize(char *input);
-void execmd(char **argv);
+char *trimInput(char *input);
 
 #endif

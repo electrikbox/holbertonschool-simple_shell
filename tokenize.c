@@ -12,11 +12,9 @@ char **tokenize(char *input)
 	int argCount = 0;
 
 	args = calloc(10, sizeof(char *));
+
 	if (args == NULL)
-	{
-		perror("Memory allocation failed");
-		exit(1);
-	}
+		return (NULL);
 
 	token = strtok(input, " \t\n");
 
