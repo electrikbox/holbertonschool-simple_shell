@@ -12,13 +12,15 @@ int execute(char *input)
 	pid_t pid;
 
 	args = tokenize(input);
+	if (args == NULL)
+		return (-1);
 
 	if (input[0] == '/' || (input[0] == '.' && input[1] == '/'))
 		path = strdup(input);
 	else
 		path = getPathEnv(args[0]);
 
-	if (args == NULL || path == NULL)
+	if (path == NULL)
 	{
 		free(args);
 		return (-1);
