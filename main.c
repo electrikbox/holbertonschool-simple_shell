@@ -32,6 +32,9 @@ int main(int argc, char **argv)
 		if (trimmedInput == NULL)
 			continue;
 
+		if (strcmp(trimmedInput, "exit\n") == 0)
+			break;
+
 		exeCmd = execute(input);
 		if (exeCmd == -1)
 			perror(argv[0]);
