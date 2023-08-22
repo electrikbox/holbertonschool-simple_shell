@@ -34,7 +34,7 @@ For example, if the user enters the command `ls` to display a list of files and 
 * Implement the `env` **built-in**, that prints the current environment
 
 ## Flowchart
-
+![Image](https://cdn.discordapp.com/attachments/1130868842197962864/1143532681271971840/Capture_decran_2023-08-22_a_15.10.15.png)
 ## File Usage
 
 | Name File | Description |
