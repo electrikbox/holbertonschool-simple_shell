@@ -2,8 +2,8 @@
 
 /**
  * main - Shell
- * @ac: Number of arguments
- * @av: Arguments
+ * @argc: Number of arguments
+ * @argv: Arguments
  * Return: 0
 */
 int main(int argc, char **argv)
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 		if (strcmp(trimmedInput, "exit\n") == 0)
 		{
 			free(trimmedInput);
-			exit (0);
+			exit(0);
 		}
 
 		exitStatus = execute(trimmedInput);

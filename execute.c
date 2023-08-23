@@ -23,7 +23,7 @@ int execute(char *input)
 	if (path == NULL)
 	{
 		free(args);
-		return(-1);
+		return (-1);
 	}
 
 	pid = fork();
@@ -31,11 +31,11 @@ int execute(char *input)
 	{
 		free(args);
 		free(path);
-		return(-1);
+		return  (-1);
 	}
 	else if (pid == 0)
 		exitStatus = execve(path, args, environ);
-		
+
 	else
 	{
 		wait(&status);
