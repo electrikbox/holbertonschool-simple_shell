@@ -41,6 +41,5 @@ int main(int argc, char **argv)
 	}
 
 	free(input);
-	printf("%d\n", exitStatus);
 	return (exitStatus);
 }
