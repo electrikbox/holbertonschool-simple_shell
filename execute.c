@@ -34,15 +34,8 @@ int execute(char *input)
 		return(-1);
 	}
 	else if (pid == 0)
-	{
 		exitStatus = execve(path, args, environ);
-		/*if (exitStatus < 0)
-		{
-			free(args);
-			free(path);
-			return (-1);
-		}*/
-	}
+		
 	else
 	{
 		wait(&status);

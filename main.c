@@ -33,7 +33,10 @@ int main(int argc, char **argv)
 			continue;
 
 		if (strcmp(trimmedInput, "exit\n") == 0)
-			break;
+		{
+			free(trimmedInput);
+			exit (0);
+		}
 
 		exitStatus = execute(trimmedInput);
 		if (exitStatus == -1)
