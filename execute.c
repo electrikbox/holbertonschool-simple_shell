@@ -7,7 +7,7 @@
 */
 int execute(char *input)
 {
-	int status, exe;
+	int status, exeitStatus = 0;
 	char **args, *path;
 	pid_t pid;
 
@@ -35,12 +35,12 @@ int execute(char *input)
 	}
 	else if (pid == 0)
 	{
-		exe = execve(path, args, environ);
-		if (exe < 0)
+		exeitStatus = execve(path, args, environ);
+		if (exeitStatus < 0)
 		{
 			free(args);
 			free(path);
-			return (-1);
+			return (exeitStatus);
 		}
 	}
 	else
@@ -49,5 +49,5 @@ int execute(char *input)
 		free(args);
 		free(path);
 	}
-	return (1);
+	return (exeitStatus);
 }
