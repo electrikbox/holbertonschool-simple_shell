@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 		if (strcmp(trimmedInput, "exit\n") == 0)
 			break;
 
-		exeCmd = execute(input);
+		exeCmd = execute(trimmedInput);
 		if (exeCmd == -1)
 			perror(argv[0]);
 	}
