@@ -15,7 +15,7 @@ int execute(char *input)
 	if (args == NULL)
 		return (-1);
 
-	if (input[0] == '/')
+	if (input[0] == '/' || input[0] == '.')
 		path = strdup(input);
 	else
 		path = getPathEnv(args[0]);
@@ -36,22 +36,20 @@ int execute(char *input)
 	else if (pid == 0)
 	{
 		exitStatus = execve(path, args, environ);
-		if (exitStatus < 0)
+		/*if (exitStatus < 0)
 		{
 			free(args);
 			free(path);
-			exit(127);
-		}
-		/*else
-		{
-			exit(0);
+			return (-1);
 		}*/
 	}
 	else
 	{
 		wait(&status);
+		free(args);
+		free(path);
 		if (WIFEXITED(status))
-			exitStatus = WEXITSTATUS(status);
+			status = WEXITSTATUS(status);
 	}
 	return (exitStatus);
 }
