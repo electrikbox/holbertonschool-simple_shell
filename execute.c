@@ -23,7 +23,7 @@ int execute(char *input)
 	if (path == NULL)
 	{
 		free(args);
-		return(127);
+		return(-1);
 	}
 
 	pid = fork();
@@ -42,7 +42,6 @@ int execute(char *input)
 			free(path);
 			return (-1);
 		}
-		exit(1);
 	}
 	else
 	{
