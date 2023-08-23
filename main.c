@@ -33,13 +33,14 @@ int main(int argc, char **argv)
 			continue;
 
 		if (strcmp(trimmedInput, "exit\n") == 0)
-			break;;
+			break;
 
 		exitStatus = execute(trimmedInput);
-		if (exitStatus != 1)
+		if (exitStatus == -1)
 			perror(argv[0]);
 	}
 
 	free(input);
+	printf("%d\n", exitStatus);
 	return (exitStatus);
 }
