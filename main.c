@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 			continue;
 
 		if (strcmp(trimmedInput, "exit\n") == 0)
-			break;
+			exit(2);
 
 		exeCmd = execute(trimmedInput);
 		if (exeCmd == -1)
