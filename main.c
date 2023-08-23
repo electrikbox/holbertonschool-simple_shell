@@ -8,7 +8,7 @@
 */
 int main(int argc, char **argv)
 {
-	int exeCmd;
+	int exitStatus = 0;
 	char *input = NULL, *trimmedInput = NULL;
 	size_t bufSize = 0;
 	ssize_t read;
@@ -33,13 +33,13 @@ int main(int argc, char **argv)
 			continue;
 
 		if (strcmp(trimmedInput, "exit\n") == 0)
-			exit(2);
+			break;;
 
-		exeCmd = execute(trimmedInput);
-		if (exeCmd == -1)
+		exitStatus = execute(trimmedInput);
+		if (exitStatus != 1)
 			perror(argv[0]);
 	}
 
 	free(input);
-	return (EXIT_SUCCESS);
+	return (exitStatus);
 }

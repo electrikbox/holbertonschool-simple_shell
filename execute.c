@@ -23,7 +23,7 @@ int execute(char *input)
 	if (path == NULL)
 	{
 		free(args);
-		return (-1);
+		return(127);
 	}
 
 	pid = fork();
